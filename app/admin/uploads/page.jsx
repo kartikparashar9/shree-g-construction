@@ -71,11 +71,11 @@ const handleFileChange = (event) => {
               ))}
 
               {/* Upload Section */}
-<div className="flex flex-col items-center gap-6 rounded-xl border-2 border-dashed border-[#dbdbdb] px-6 py-14">
-  <div className="text-center">
+   <div className="flex flex-col items-center gap-6 rounded-xl border-2 border-dashed border-[#dbdbdb] px-6 py-14">
+   <div className="text-center">
     <p className="text-lg font-bold text-[#141414]">Upload Images</p>
     <p className="text-sm text-[#141414]">Drag and drop or browse to upload images</p>
-  </div>
+    </div>
   
   {/* Hidden File Input */}
   <input 

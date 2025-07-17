@@ -1,6 +1,26 @@
 import { prisma } from '@/lib/utils';
 import Brevo from '@getbrevo/brevo';
 
+export async function GET() {
+  try {
+    const contacts = await prisma.contact.findMany({
+      orderBy: { createdAt: 'desc' }, // Optional: sort by newest first
+    });
+
+    return new Response(JSON.stringify({ success: true, data: contacts }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+
+  } catch (error) {
+    console.error("GET Contact API Error:", error);
+    return new Response(JSON.stringify({ success: false, message: "Failed to fetch", error: error.message }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+}
+
 export async function POST(req) {
   try {
     const { name, mobile, email, message } = await req.json();
@@ -22,7 +42,7 @@ export async function POST(req) {
     emailApi.authentications.apiKey.apiKey = process.env.BREVO_API_KEY;
 
     const adminEmailData = {
-      sender: { email: "mahendrathakur0040@gmail.com", name: "Contact Form" },
+      sender: { email: "bathrilove@gmail.com", name: "Contact Form" },
       to: [{ email: "mahendrachandel040@gmail.com" }],
       subject: "New Contact Form Submission",
       htmlContent: `<h3>New Contact Request</h3>
@@ -32,7 +52,7 @@ export async function POST(req) {
     };
 
     const userEmailData = {
-      sender: { email: "mahendrathakur0040@gmail.com", name: "ShreeG-Construction" },
+      sender: { email: "bathrilove@gmail.com", name: "ShreeG-Construction" },
       to: [{ email }],
       subject: "Thank You for Contacting Us",
       htmlContent: `<h3>Hi ${name},</h3>
