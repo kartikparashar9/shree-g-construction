@@ -59,3 +59,11 @@ export async function POST(req) {
     });
   }
 }
+
+export async function GET() {
+
+return new Response(JSON.stringify({ success: true, message: "Saved and emails sent" }), {
+      status: 200,
+    
+    });  
+}

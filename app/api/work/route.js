@@ -17,7 +17,7 @@ export async function POST(req) {
       description,
       workCategory,
     } = body;
-    
+
 
     if (!projectName || !projectNumber || !type || !imageUrls) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
