@@ -1,7 +1,7 @@
 "use client"
 import Head from 'next/head';
 import React, { useState } from 'react'; 
-
+import axios from 'axios';
 
 const signUp = () => {
 

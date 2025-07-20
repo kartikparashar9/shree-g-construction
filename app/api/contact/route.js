@@ -4,7 +4,7 @@ import Brevo from '@getbrevo/brevo';
 export async function GET() {
   try {
     const contacts = await prisma.contact.findMany({
-      orderBy: { createdAt: 'desc' }, // Optional: sort by newest first
+      orderBy: { createdAt: 'desc' },
     });
 
     return new Response(JSON.stringify({ success: true, data: contacts }), {
@@ -26,16 +26,9 @@ export async function POST(req) {
     const { name, mobile, email, message } = await req.json();
 
     if (!process.env.BREVO_API_KEY) throw new Error("Brevo API key is missing");
-    console.log("Brevo API Key:", process.env.BREVO_API_KEY);
 
-    // 🟩 Store contact form message in DB
     await prisma.contact.create({
-      data: {
-        name,
-        email,
-        mobile,
-        message,
-      },
+      data: { name, email, mobile, message },
     });
 
     const emailApi = new Brevo.TransactionalEmailsApi();
@@ -78,12 +71,4 @@ export async function POST(req) {
       headers: { "Content-Type": "application/json" },
     });
   }
-}
-
-export async function GET() {
-
-return new Response(JSON.stringify({ success: true, message: "Saved and emails sent" }), {
-      status: 200,
-    
-    });  
 }

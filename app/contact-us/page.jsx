@@ -89,7 +89,7 @@ const Contact = () => {
                 rows="5"
                 className="border border-gray-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 p-4 rounded-xl transition-all"
                 value={data.message}
-                onChange={(e) => setData((prev) => ({ ...prev, message: e.target.value }))}
+    onChange={(e) => setData((prev) => ({ ...prev, message: e.target.value }))}
                 required
               ></textarea>
 

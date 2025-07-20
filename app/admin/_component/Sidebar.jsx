@@ -10,10 +10,6 @@ export default function Sidebar() {
                 <li className="mb-2"><Link href="/admin/manage-user">Manage-user</Link></li>
               <li className="mb-2"><Link href="/admin/contact">Contact</Link></li>
 
-                
-
-                
-
             </ul>
         </div>
     );
