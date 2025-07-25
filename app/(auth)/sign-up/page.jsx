@@ -2,6 +2,7 @@
 import Head from 'next/head';
 import React, { useState } from 'react'; 
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 const signUp = () => {
 
@@ -14,7 +15,8 @@ const signUp = () => {
   });
 
   const [feedback, setFeedback] = useState(""); // Success or error message
-  const url = "/api/sign-up"; // Your API endpoint
+  const url = "/api/sign-up"; // Your API endpoint 
+  const router = useRouter();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -22,7 +24,8 @@ const signUp = () => {
       const response = await axios.post(url, data);
       if (response.status === 200) {
         setFeedback("Message sent successfully ✅");
-        setData({ firstName: "", lastName: "", email: "", mobile: "", password: "" }); // reset form
+        setData({ firstName: "", lastName: "", email: "", mobile: "", password: "" });
+        router.push('/');
       }
     } catch (error) {
       setFeedback("Failed to send message ❌");
@@ -42,7 +45,7 @@ const signUp = () => {
         <div className="max-w-md w-full bg-white p-8 rounded-2xl shadow-md">
           <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Create Account</h2>
 
-          <form className="space-y-5" onClick={handleSubmit}>
+          <form className="space-y-5" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="firstName" className="block text-sm font-medium text-gray-600 mb-1">First Name</label>
               <input

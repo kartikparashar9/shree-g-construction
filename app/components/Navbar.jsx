@@ -1,12 +1,33 @@
 'use client'
 
-import { useState } from 'react'
-import Link from 'next/link'
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import axios from 'axios'; // ✅ Missing
+import { useRouter } from 'next/navigation'; // ✅ Missing
+
 import { FaBars, FaTimes, FaHandHoldingWater, FaSearch } from 'react-icons/fa'
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
+const [isLoggedIn, setIsLoggedIn] = useState(false); // ✅ Correct default
+  const router = useRouter();
+    
+
+   useEffect(() => {
+    const cookie = document.cookie.includes('token');
+    setIsLoggedIn(cookie);
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      await axios.post('/api/logout');
+      setIsLoggedIn(false);
+      router.push('/sign-in');
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
+  };
 
   return (
     <>
@@ -82,17 +103,38 @@ export default function Navbar() {
           </div>
 
           {/* Buttons */}
-          <div className="flex items-center gap-3 mt-4 lg:mt-0 lg:ml-6">
+          {/* <div className="flex items-center gap-3 mt-4 lg:mt-0 lg:ml-6">
             <Link
               href="/sign-in"
               className="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 text-sm font-medium"
             >
               Sign-in
             </Link>
-          </div>
+          </div> */}
+
+             <div className="flex items-center gap-3 mt-4 lg:mt-0 lg:ml-6">
+      {!isLoggedIn ? (
+        <Link
+          href="/sign-in"
+          className="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 text-sm font-medium"
+        >
+          Sign-in
+        </Link>
+      ) : (
+        <button
+          onClick={handleLogout}
+          className="bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 text-sm font-medium"
+        >
+          Logout
+        </button>
+      )}
+    </div>
         </div>
       </nav>
     </div>
     </>
   )
 }
+
+
+

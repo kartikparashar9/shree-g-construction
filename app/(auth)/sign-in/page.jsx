@@ -1,26 +1,40 @@
+
+
+
 "use client";
+
 import React, { useState } from 'react';
 import Head from 'next/head';
-import { useRouter } from 'next/navigation'; // ✅ Correct for App Router
-import axios from 'axios'; // don't forget this
+import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
 const SignIn = () => {
-  const [data, setData] = useState({
-    email: "",
-    password: ""
-  });
-
-  const [feedback, setFeedback] = useState(""); 
-  const router = useRouter(); // ✅ Now works
+  const [data, setData] = useState({ email: "", password: "" });
+  const [feedback, setFeedback] = useState("");
+  const router = useRouter();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const response = await axios.post("/api/sign-in", data);
+
       if (response.status === 200) {
+        // Optional: Set token manually (if not set by server)
+
+        console.log("Data=",response.data.token)
+
         setFeedback("Signed in successfully ✅");
         setData({ email: "", password: "" });
-        router.push('/'); // ✅ works correctly now
+
+        
+
+       
+const role = response.data?.user?.role;
+if (role === 'ADMIN') {
+  router.push('/admin/contact');
+} else {
+  router.push('/');
+}
       }
     } catch (error) {
       setFeedback("Failed to sign in ❌");
