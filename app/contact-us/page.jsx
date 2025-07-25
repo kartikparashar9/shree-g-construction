@@ -34,7 +34,9 @@ const Contact = () => {
       <div className="relative py-20 text-white text-center bg-[url('/carousel-1.jpg')] bg-cover bg-center bg-no-repeat">
         <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
         <div className="relative z-10">
-          <h2 className="text-5xl font-extrabold mb-4 drop-shadow-md">Let's Talk 💬</h2>
+          <h2 className="text-5xl font-extrabold mb-4 drop-shadow-md">
+            Let's Talk 💬
+          </h2>
           <p className="text-lg font-medium mb-2">
             Have questions? We’d love to hear from you.
           </p>
@@ -53,10 +55,13 @@ const Contact = () => {
             <h3 className="text-sm uppercase text-blue-600 tracking-widest mb-2">
               Let’s Connect
             </h3>
-            <h2 className="text-4xl font-bold mb-4 text-gray-800">Send Your Message</h2>
+            <h2 className="text-4xl font-bold mb-4 text-gray-800">
+              Send Your Message
+            </h2>
             <p className="mb-8 text-gray-600">
               Got a question or just want to say hello? We'd love to hear from
-              you. Fill out the form below and we'll get back to you as soon as possible.
+              you. Fill out the form below and we'll get back to you as soon as
+              possible.
             </p>
 
             <form className="grid gap-5" onSubmit={handleSubmit}>
@@ -65,7 +70,9 @@ const Contact = () => {
                 placeholder="Your Name"
                 className="border border-gray-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 p-4 rounded-xl transition-all"
                 value={data.name}
-                onChange={(e) => setData((prev) => ({ ...prev, name: e.target.value }))}
+                onChange={(e) =>
+                  setData((prev) => ({ ...prev, name: e.target.value }))
+                }
                 required
               />
               <input
@@ -73,7 +80,9 @@ const Contact = () => {
                 placeholder="Your Email"
                 className="border border-gray-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 p-4 rounded-xl transition-all"
                 value={data.email}
-                onChange={(e) => setData((prev) => ({ ...prev, email: e.target.value }))}
+                onChange={(e) =>
+                  setData((prev) => ({ ...prev, email: e.target.value }))
+                }
                 required
               />
               <input
@@ -81,7 +90,9 @@ const Contact = () => {
                 placeholder="Your Phone"
                 className="border border-gray-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 p-4 rounded-xl transition-all"
                 value={data.mobile}
-                onChange={(e) => setData((prev) => ({ ...prev, mobile: e.target.value }))}
+                onChange={(e) =>
+                  setData((prev) => ({ ...prev, mobile: e.target.value }))
+                }
                 required
               />
               <textarea
@@ -89,7 +100,9 @@ const Contact = () => {
                 rows="5"
                 className="border border-gray-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 p-4 rounded-xl transition-all"
                 value={data.message}
-    onChange={(e) => setData((prev) => ({ ...prev, message: e.target.value }))}
+                onChange={(e) =>
+                  setData((prev) => ({ ...prev, message: e.target.value }))
+                }
                 required
               ></textarea>
 
@@ -123,7 +136,9 @@ const Contact = () => {
               <FaEnvelope className="text-blue-600 text-xl mt-1" />
               <div>
                 <h4 className="text-lg font-bold mb-1">Mail Us</h4>
-                <p className="text-gray-600">shreejiconstruction.bkp@gmail.com</p>
+                <p className="text-gray-600">
+                  shreejiconstruction.bkp@gmail.com
+                </p>
               </div>
             </div>
 
